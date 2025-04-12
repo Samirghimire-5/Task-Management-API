@@ -30,7 +30,7 @@ A simple and extendable Task Management REST API built with **Node.js**, **Expre
 ### 1. Clone the Repository
 
 ```bash
-git clone [https://github.com/your-username/task-api.git](https://github.com/your-username/task-api.git)
+git clone [https://github.com/Samirghimire-5/Task-Management-API.git](https://github.com/Samirghimire-5/Task-Management-API.git)
 cd task-api
 
 2. Install Dependencies
