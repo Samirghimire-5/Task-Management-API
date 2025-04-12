@@ -1,100 +1,113 @@
-# 📝 Task API
-
-A simple and extendable Task Management REST API built with **Node.js**, **Express**, and **MongoDB**. Supports full CRUD operations, validation with **Joi**, and advanced features like **pagination**, **sorting**, and **filtering**.
+🚀 Task API
+[Node.js](https://nodejs.org) | [Express.js](https://expressjs.com) | [MongoDB](https://mongodb.com) | 
+Task API is a scalable RESTful backend service to manage tasks. Built with Node.js, Express.js, and MongoDB, it supports full CRUD operations along with filtering, sorting, and pagination.
+---
+📚 Table of Contents
+- [🚀 Features](#🚀-features)
+- [🛠️ Tech Stack](#🛠️-tech-stack)
+- [📦 Getting Started](#📦-getting-started)
+- [🔌 API Endpoints](#🔌-api-endpoints)
+- [📂 Project Structure](#📂-project-structure)
+- [🧪 Testing](#🧪-testing)
 
 ---
-
-## 🚀 Features
-
-- Create, read, update, delete tasks (CRUD)
-- Status management: `pending`, `in-progress`, `completed`
-- Input validation with Joi
-- Pagination, sorting, and filtering support
-- Optional API Key middleware for secure access
-- Easily deployable (e.g., Render + MongoDB Atlas)
-
+🌟 Features
+- Full CRUD operations on tasks
+- Filter tasks by status (`pending`, `in-progress`, `completed`)
+- Sort tasks by fields like `createdAt`, `title`
+- Pagination using `page` and `limit` query parameters
+- Request validation with Joi
+- MongoDB database with Mongoose ODM
+- Clean and modular file structure
+- Production-ready and deployable to platforms like Railway, Render, or Cyclic
 ---
-
-## 🛠️ Tech Stack
-
-- Node.js
-- Express.js
-- MongoDB & Mongoose
-- Joi for validation
-- dotenv for environment variables
-
+🛠️ Tech Stack
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB (with Mongoose)
+- **Validation**: Joi
+- **Testing**: Postman / Thunder Client
 ---
-
-## 🔧 Setup Instructions
-
-### 1. Clone the Repository
-
+📦 Getting Started
+1. Clone the repository
 ```bash
-git clone [https://github.com/Samirghimire-5/Task-Management-API.git](https://github.com/Samirghimire-5/Task-Management-API.git)
-cd task-api
-
-2. Install Dependencies
+git clone https://github.com/Samirghimire-5/Task-Management-API.git
+cd server
+```
+2. Install dependencies
+```bash
 npm install
-
-3. Create .env File
-Create a .env file in the root directory and add your environment variables:
-PORT=8000
-MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/TaskApi
-API_KEY=your-secret-key # (optional)
-
-4. Run the Server Locally
+```
+3. Configure environment variables
+Create a .env file in the root directory:
+```env
+PORT=9000
+MONGO_URI=your_mongodb_connection_string
+API_KEY=your_api_key  (# optional)
+```
+Replace your_mongodb_connection_string with your actual MongoDB URI.
+4. Start the server
+```bash
 npm start
-Your API will be running on http://localhost:8000/api/tasks
-
-📦 API Endpoints
+```
+Server will run at: http://localhost:9000
+🔌 API Endpoints
 ➕ Create Task
 POST /api/tasks
-Body:
+```json
 {
-  "title": "Buy groceries",
-  "description": "Milk, Eggs, Bread",
+  "title": "Build the API",
+  "description": "Implement task routes",
   "status": "pending"
 }
-📚 Get All Tasks (with pagination, sorting, filtering)
+```
+📄 Get All Tasks
 GET /api/tasks
-Query Parameters (optional):
-
-Parameter	Description	Default	Example
-page:	Page number	1	/api/tasks?page=2
-limit:	Number of tasks per page	10	/api/tasks?limit=5
-sortBy:	Field to sort by	createdAt	/api/tasks?sortBy=title
-order:	Sorting order (asc or desc)	asc	/api/tasks?sortBy=dueDate&order=desc
-status:	Filter by status (pending, in-progress, completed)	None	/api/tasks?status=completed
+Query Parameters:
+- status → Filter by status (pending, in-progress, completed)
+- sortBy → Field to sort by (createdAt, title, etc.)
+- order → asc or desc
+- page → Page number
+- limit → Items per page
 
 Example:
-GET /api/tasks?page=1&limit=5&sortBy=createdAt&order=desc&status=pending
-
-📄 Get Single Task
+```/api/tasks?status=pending&sortBy=createdAt&order=desc&page=1&limit=5```
+🧾 Get Single Task
 GET /api/tasks/:id
-Replace :id with the ID of the task you want to retrieve.
-
 ✏️ Update Task
 PUT /api/tasks/:id
-Body: (any field can be updated)
+```json
 {
-  "title": "Updated title",
+  "title": "Update docs",
   "status": "completed"
 }
-Replace :id with the ID of the task you want to update.
-
-🔁 Update Task Status (PATCH)
-PATCH /api/tasks/:id/status
-Body:
-{
-  "status": "in-progress"
-}
-Replace :id with the ID of the task whose status you want to update.
-
+```
 ❌ Delete Task
 DELETE /api/tasks/:id
-Replace :id with the ID of the task you want to delete.
+📂 Project Structure
+```arduino
+server/src/
+├── controllers/
+│   └── taskController.js
+├── models/
+│   └── taskModel.js
+├── routes/
+│   └── taskRoutes.js
+├── middlewares/
+│   └── apiKey.js
+├── validators/
+│   └── taskValidation.js
+|   └── taskUpdateValidation.js
+├── database/
+│   └── connections.js
+├── .env
+├── index.js
+├── package.json
+```
 
+Optional:
+Include your live URL here if deployed.
+```🔗 Live URL: https://your-task-api.onrailway.app```
 🧪 Testing
 You can test API endpoints using:
--Postman
--Thunder Client (VS Code Extension)
+- Postman
+- Thunder Client (VS Code Extension)
